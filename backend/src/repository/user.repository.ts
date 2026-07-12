@@ -1,5 +1,6 @@
-import { connection } from "../utils/connection-db.js";
-import { Repository } from "./repository.js";
+import type { User } from "../types/types.ts";
+import { connection } from "../utils/connection-db.ts";
+import { Repository } from "./repository.ts";
 
 export class UserRepository extends Repository {
 
@@ -11,12 +12,7 @@ export class UserRepository extends Repository {
         return result.rows;
     }
 
-    static async create(user: {
-        name: string;
-        lastname: string;
-        email: string;
-        password: string;
-    }) {
+    static async create({user}: {user: User}) {
 
         await connection.query(
             `
